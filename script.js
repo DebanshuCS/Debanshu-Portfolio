@@ -1,76 +1,68 @@
-const modeToggle = document.getElementById("modeToggle");
-modeToggle.onclick = () => {
-  document.body.classList.toggle("dark-mode");
-  modeToggle.textContent = document.body.classList.contains("dark-mode")
-    ? "☀️"
-    : "🌙";
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    const icons = document.querySelectorAll('.floating-icons .icon-item');
-    const container = document.querySelector('.floating-icons');
 
-    const iconSize = 72; // icon width and height in px
+    // 1. Dark Mode Logic
+    const modeToggle = document.getElementById("modeToggle");
+    const body = document.body;
 
-    function getRandomPosition(max) {
-        return Math.random() * max;
+    // Check for saved preference
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        modeToggle.textContent = "☀️";
     }
 
-    function moveIcons() {
-        const maxX = container.clientWidth - iconSize;
-        const maxY = container.clientHeight - iconSize;
+    modeToggle.onclick = () => {
+        body.classList.toggle("dark-mode");
+        const isDark = body.classList.contains("dark-mode");
+        modeToggle.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    };
 
-        icons.forEach(icon => {
-            const newX = getRandomPosition(maxX);
-            const newY = getRandomPosition(maxY);
-            icon.style.transition = 'top 3s ease, left 3s ease';
-            icon.style.top = `${newY}px`;
-            icon.style.left = `${newX}px`;
+    // 2. View Switching Logic (SPA Feel)
+    window.switchView = function(viewName) {
+        // Prevent default jump behavior if called from anchor tag
+        event?.preventDefault();
+
+        // Get all views and nav items
+        const views = document.querySelectorAll('.view-section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        // Hide all views
+        views.forEach(view => {
+            view.classList.remove('active');
+            // Small timeout to allow CSS transition if needed,
+            // but for display:none switching, we usually just toggle class
+            setTimeout(() => {
+                if(!view.classList.contains('active')) {
+                    view.classList.add('hidden');
+                }
+            }, 100);
         });
-    }
 
-    // Initial random placement
-    icons.forEach(icon => {
-        icon.style.position = 'absolute';
-        icon.style.top = getRandomPosition(container.clientHeight - iconSize) + 'px';
-        icon.style.left = getRandomPosition(container.clientWidth - iconSize) + 'px';
-    });
-
-    // Continuously move icons every 3 seconds
-    setInterval(moveIcons, 3000);
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const cards = document.querySelectorAll('.project-card');
-
-    function animateOnScroll() {
-        cards.forEach(card => {
-            const cardTop = card.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            if (cardTop < windowHeight - 80) {
-                card.classList.add('in-view');
-            } else {
-                card.classList.remove('in-view');
-            }
+        // Deactivate all nav links
+        navItems.forEach(item => {
+            item.classList.remove('active');
         });
-    }
 
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Initial check
-});
-document.addEventListener("DOMContentLoaded", function() {
-    const cards = document.querySelectorAll('.project-card');
-    function animateCards() {
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top <= window.innerHeight - 50) {
-                card.classList.add('in-view');
-            } else {
-                card.classList.remove('in-view');
-            }
-        });
-    }
-    window.addEventListener('scroll', animateCards);
-    animateCards();
-});
+        // Show specific view
+        const targetView = document.getElementById(`${viewName}-view`);
+        const targetNav = document.getElementById(`nav-${viewName}`);
 
+        if (targetView) {
+            // Remove hidden first to allow display:block
+            targetView.classList.remove('hidden');
+
+            // Force reflow to enable animation
+            void targetView.offsetWidth;
+
+            // Add active class to trigger CSS animation
+            targetView.classList.add('active');
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        if (targetNav) {
+            targetNav.classList.add('active');
+        }
+    };
+});

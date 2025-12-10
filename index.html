@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Debanshu Das — Research-driven  Computer Science graduate</title>
+    <title>Debanshu Das — Research-driven Computer Science Graduate</title>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="navbar-content">
-        <span class="brand">Debanshu Das</span>
+</head>
+<body>
+<nav>
+    <div class="navbar-content">
+        <span class="brand" onclick="switchView('home')">Debanshu Das</span>
         <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-            <a href="#research" class="nav-research">Research Statement</a>
-          <a href="#publications">Publications</a>
-          <a href="#resume">Resume</a>
-          <a href="#contact">Contact</a>
+            <a href="#" onclick="switchView('home')" class="nav-item active" id="nav-home">Home</a>
+            <a href="#" onclick="switchView('projects')" class="nav-item" id="nav-projects">Projects</a>
+            <a href="#" onclick="switchView('research')" class="nav-item" id="nav-research">Research</a>
+            <a href="#" onclick="switchView('publications')" class="nav-item" id="nav-publications">Publications</a>
         </div>
         <button class="toggle-btn" id="modeToggle">🌙</button>
-      </div>
-    </nav>
+    </div>
+</nav>
+
+<main id="home-view" class="view-section active">
     <header>
         <div class="main-header">
             <div class="profile-photo-container">
@@ -28,150 +28,192 @@
             </div>
             <div class="intro">
                 <h1>Research-driven Computer Science graduate</h1>
-                <p>I build dependable ML systems and secure analytics — bridging research and production.</p>
+                <p>Bridging Medical Imaging, Deep Learning, and Production Engineering.</p>
                 <div class="facts">
                     <div><strong>Location:</strong> Bengaluru, India</div>
                     <div><strong>Email:</strong> talkto.debanshu@gmail.com</div>
-                    <div><strong>GitHub:</strong> <a href="https://github.com/DebanshuCS">DebanshuCS</a></div>
+                    <div><strong>GitHub:</strong> <a href="https://github.com/DebanshuCS" target="_blank">DebanshuCS</a></div>
                 </div>
                 <div class="hero-actions">
-                    <a href="#projects" class="action-btn">View projects</a>
-                    <a href="#resume" class="action-btn">Download resume</a>
-                    <a href="mailto:talkto.debanshu@gmail.com" class="action-btn">Email me</a>
+                    <button onclick="switchView('projects')" class="action-btn">View projects</button>
+                    <a href="https://github.com/DebanshuCS/Resume/blob/main/CV%20Debanshu%20Das.pdf" target="_blank" class="action-btn">Download CV</a>
                 </div>
             </div>
             <div class="quick-facts-box">
                 <h3>Quick Facts</h3>
                 <ul>
-                    <li><strong>Education:</strong><br>XIM University — B.Tech (Hons), C.S. (2019–2023)</li>
-                    <li><strong>Research:</strong><br> Research Fellow, BITS Pilani (PAST & PALM)</li>
-                    <li><strong>Skills:</strong><br> Python, C++, GCN, NLP, Process Mining, Docker</li>
-                    <li><strong>Publications:</strong><br> IEEE COMSNETS 2024, IEEE PRDC 2024</li>
+                    <li><strong>Focus:</strong><br>Medical Imaging & Multimodal DL</li>
+                    <li><strong>Current:</strong><br>Research Fellow, BITS Pilani</li>
+                    <li><strong>Tech:</strong><br>Python, PyTorch, GCN, Docker</li>
+                    <li><strong>Publications:</strong><br>IEEE COMSNETS 24, IEEE PRDC 24</li>
                 </ul>
             </div>
         </div>
     </header>
+
     <section id="about">
-      <h2>About</h2>
-      <p>
-        I am a recent Computer Science graduate with hands-on experience in
-        applied machine learning, security analytics and production-aware model
-        development. I have built ML systems in NLP and computer vision, and
-        developed hybrid threat-detection frameworks (PAST, PALM) that combine
-        process mining, attack graphs and graph neural networks. My work spans
-        research publishing, reproducible experiment pipelines and system-level
-        troubleshooting — a mix that helps me translate academic ideas into
-        robust engineering outcomes.
-      </p>
-      <div class="info-cards">
-        <div>
-          <h3>Research</h3>
-          <p>
-            Threat modelling, process mining, GCNs for link prediction,
-            explainability and OOD detection.
-          </p>
-        </div>
-        <div>
-          <h3>Engineering</h3>
-          <p>
-            End-to-end ML pipelines, Python automation, Docker, cloud
-            deployments and CI practices.
-          </p>
-        </div>
-        <div>
-          <h3>Development</h3>
-          <p>
-              Advanced coding practices with deep learning architectures, graph neural
-              networks, and scalable AI solutions, transforming theoretical research
-              into real-world implementations.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section id="projects">
-      <h2>Selected Projects</h2>
-      <div class="project-card">
-        <h3>PALM — Threat Detection Framework</h3>
+        <h2>About</h2>
         <p>
-          Designed a sparse graph-based framework integrating process models
-          with threat intelligence (MITRE ATT&CK, OpenCTI). Applied GCNs for
-          link prediction and discovered feasible attack links with 84%
-          prediction accuracy on test data. Work produced reproducible pipelines
-          and a conference publication.
+            I am a Computer Science researcher and engineer focused on applied machine learning and production-aware model development.
+            My background includes building specialized systems for NLP and computer vision, such as PALM (a hybrid threat-detection framework utilizing GNNs).
         </p>
-      </div>
+        <p>
+            <strong>Current Focus:</strong> I am addressing a critical gap in healthcare diagnostics: the <em>Early Detection of Knee Osteoarthritis (OA)</em>.
+            Because plain radiographs typically fail to detect early-stage OA, I am developing a deep learning architecture that fuses
+            high-resolution MRI scans with clinical patient history. This multimodal approach aims to capture early cartilage loss that X-rays miss.
+            I am currently validating this model on clinical data alongside hospital collaborators.
+        </p>
+        <div class="info-cards">
+            <div>
+                <h3>Research</h3>
+                <p>Medical Image Analysis, Multimodal Deep Learning, Threat Modelling, GCNs, and Explainable AI.</p>
+            </div>
+            <div>
+                <h3>Engineering</h3>
+                <p>Reproducible ML pipelines, Python automation, Docker, system-level troubleshooting, and clinical model validation.</p>
+            </div>
+            <div>
+                <h3>Development</h3>
+                <p>Building novel architectures for healthcare and security, fusing MRI scans with clinical data, and translating academic theory into robust implementations.</p>
+            </div>
+        </div>
+    </section>
 
+    <section id="contact-mini">
+        <h2>Let's Connect</h2>
+        <p>
+            I’m open to PhD discussions, research collaborations, and engineering roles.
+            <br><br>
+            <a href="mailto:talkto.debanshu@gmail.com" class="email-btn">Email Me</a>
+            <a href="https://github.com/DebanshuCS/Resume/blob/main/CV%20Debanshu%20Das.pdf" class="download-btn">Get Resume</a>
+        </p>
     </section>
-    <section id="publications">
-      <h2>Publications</h2>
-      <div class="publication-card">
-        Simulating cyber-attack scenarios by discovering Petri Nets from large
-        scale event logs — IEEE COMSNETS 2024
-      </div>
-      <div class="publication-card">
-        PALM: A framework to identify novel attacks in an e-commerce system —
-        IEEE PRDC 2024
-      </div>
+</main>
+
+<main id="projects-view" class="view-section hidden">
+    <section class="content-wrapper">
+        <h2>Selected Projects</h2>
+        <p class="section-subtitle">Bridging theoretical research with robust engineering implementation.</p>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>PALM — Threat Detection Framework</h3>
+                <p>
+                    Designed a sparse graph-based framework integrating process models
+                    with threat intelligence (MITRE ATT&CK). Applied GCNs for
+                    link prediction, achieving 84% accuracy on test data.
+                    Produced reproducible pipelines and a conference publication.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h3>Rumor Detection via Hybrid DL</h3>
+                <p>
+                    Engineered a hybrid architecture combining Bi-LSTMs and GCNs
+                    to verify information veracity on social media. The model
+                    fuses semantic text analysis with network propagation dynamics,
+                    using attention mechanisms for robust classification.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h3>AnoDet-ICS — Industrial Anomaly Detection</h3>
+                <p>
+                    Implemented a sequence-to-sequence neural network for anomaly detection
+                    in Industrial Control Systems (ICS) using the SWaT dataset. Utilized
+                    PyTorch to detect deviations in multivariate time-series sensor data.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h3>Aerial Object Detection (R-CNN & YOLO)</h3>
+                <p>
+                    Developed an automated pipeline for identifying aircraft in
+                    satellite imagery. Benchmarked YOLOv7 against Faster R-CNN on a
+                    custom 'High Resolution Planes' dataset, evaluating localization
+                    accuracy via Intersection over Union (IoU) metrics.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h3>MediSlot — Healthcare Management</h3>
+                <p>
+                    Architected a full-stack MERN application for streamlining
+                    patient-doctor interactions. Integrated secure payment gateways
+                    and developed a comprehensive admin dashboard for real-time scheduling.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h3>Epidemic Dynamics Modelling</h3>
+                <p>
+                    Simulated long-term epidemic trajectories using ODEs based on the SIR framework.
+                    Modeled the impact of lockdown policies to demonstrate the mathematical
+                    efficacy of intervention strategies in damping oscillation rates.
+                </p>
+            </div>
+        </div>
     </section>
-    <section id="resume">
-      <h2>Resume</h2>
-      <p>
-        Download a PDF of my resume and publications list for detailed
-        experience, KPIs, and project code links.
-      </p>
-      <a href="#" class="download-btn">Download Resume (PDF)</a>
-      <a href="mailto:talkto.debanshu@gmail.com" class="email-btn"
-        >Contact via email</a
-      >
-    </section>
-    <section id="research" class="research-section">
+</main>
+
+<main id="research-view" class="view-section hidden">
+    <section class="content-wrapper">
         <h2>Research Statement</h2>
-<!--        <div class="research-icons floating-icons">-->
-<!--            <div class="icon-item" title="Threat Modelling">-->
-<!--                <img src="icons/threat-detection.png" alt="Threat Modelling Icon" />-->
-<!--                <span class="hover-text">Threat Modelling</span>-->
-<!--            </div>-->
-<!--            <div class="icon-item" title="Process Mining">-->
-<!--                <img src="icons/data-mining.png" alt="Process Mining Icon" />-->
-<!--                <span class="hover-text">Process Mining</span>-->
-<!--            </div>-->
-<!--            <div class="icon-item" title="Graph Neural Networks">-->
-<!--                <img src="icons/deep-learning.png" alt="Graph Neural Networks Icon" />-->
-<!--                <span class="hover-text">GNN</span>-->
-<!--            </div>-->
-<!--        </div>-->
-        <p>
-            My research journey began during my undergraduate thesis, where I explored the use of deep learning for early rumor detection on social media. This work exposed me to the potential of AI in addressing real-world challenges and sparked my curiosity about applying machine learning to domains with high societal impact, particularly the security of Cyber-Physical Systems (CPS).
-        </p>
-        <p>
-            In 2023, I advanced this interest as a Research Fellow at BITS Pilani, where I focused on modeling attacker behaviors in CPS. I developed tools that automated log parsing and integrated Petri Nets with perturbation techniques to simulate adversarial activity, work that culminated in a peer-reviewed publication at ICCSN. Building on this foundation, I explored predictive threat modeling by combining attack graphs with graph convolutional networks (GCNs), enabling more accurate attack path prediction. This research was accepted at IEEE PRDC 2024 and demonstrated how integrating threat intelligence with AI can enhance system-level security analysis.
-        </p>
-        <p>
-            Looking ahead, my research aims to design intelligent, adaptive defense mechanisms for CPS. Specifically, I am investigating:
-        </p>
-        <ul>
-            <li>Transformer-based models for semantic log analysis and anomaly detection.</li>
-            <li>Graph Neural Networks for attack path prediction and vulnerability assessment.</li>
-            <li>Scalable NLP-GNN frameworks for CPS security orchestration with reinforcement learning.</li>
-        </ul>
-        <p>By uniting these approaches into robust frameworks, I hope to create real-time orchestration systems capable of detecting and mitigating complex multi-step intrusions such as Advanced Persistent Threats (APTs).
+        <div class="research-content">
+            <p>
+                My research journey began exploring deep learning for early rumor detection on social media.
+                This sparked my curiosity about applying ML to domains with high societal impact,
+                particularly the security of Cyber-Physical Systems (CPS) and, more recently, Medical Imaging.
+            </p>
+            <div class="highlight-box">
+                <h3>Current Focus: Medical Imaging</h3>
+                <p>
+                    I am currently developing multimodal Deep Learning architectures to detect Knee Osteoarthritis
+                    using MRI scans and clinical data, aiming to identify disease markers before they appear on standard X-rays.
+                </p>
+            </div>
+            <p>
+                <strong>Previous Contributions (CPS Security):</strong><br>
+                In 2023, as a Research Fellow at BITS Pilani, I focused on modeling attacker behaviors.
+                I developed tools that automated log parsing and integrated Petri Nets to simulate adversarial activity.
+                I further explored predictive threat modeling by combining attack graphs with GCNs,
+                culminating in an accepted paper at <strong>IEEE PRDC 2024</strong>.
+            </p>
 
-            Ultimately, my goal is to contribute to the development of AI-driven security frameworks that can adapt to evolving attack strategies, ensuring the resilience of CPS infrastructures. I am eager to continue this work through collaborative, interdisciplinary research that combines rigorous technical methods with a focus on practical impact.</p>
+            <h3>Future Directions</h3>
+            <p>I aim to design intelligent systems capable of:</p>
+            <ul>
+                <li><strong>Multimodal Fusion:</strong> Combining disparate data sources (Imaging + Text + Tabular) for higher diagnostic accuracy.</li>
+                <li><strong>Adaptive Defense:</strong> Using GNNs for attack path prediction in critical infrastructure.</li>
+                <li><strong>Scalability:</strong> Building NLP-GNN frameworks that operate in real-time environments.</li>
+            </ul>
+        </div>
     </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        I’m open to PhD discussions, research collaborations, and engineering
-        roles. Email me at
-        <a href="mailto:talkto.debanshu@gmail.com">talkto.debanshu@gmail.com</a>
-        or find me on <a href="https://github.com/DebanshuCS">GitHub</a>.
-      </p>
+</main>
+
+<main id="publications-view" class="view-section hidden">
+    <section class="content-wrapper">
+        <h2>Publications</h2>
+        <div class="pub-grid">
+            <div class="publication-card">
+                <span class="pub-year">2024</span>
+                <h3>PALM: A framework to identify novel attacks in an e-commerce system</h3>
+                <p>IEEE PRDC 2024 (Pacific Rim International Symposium on Dependable Computing)</p>
+            </div>
+            <div class="publication-card">
+                <span class="pub-year">2024</span>
+                <h3>Simulating cyber-attack scenarios by discovering Petri Nets from large scale event logs</h3>
+                <p>IEEE COMSNET 2024</p>
+            </div>
+        </div>
     </section>
-    <footer>
-      <div class="footer-txt">
+</main>
+
+<footer>
+    <div class="footer-txt">
         © Debanshu Das — Built for academic & industry audiences
-      </div>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
 </html>
