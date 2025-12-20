@@ -2,67 +2,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Dark Mode Logic
     const modeToggle = document.getElementById("modeToggle");
+    const modeIcon = modeToggle.querySelector("i");
     const body = document.body;
 
     // Check for saved preference
-    if (localStorage.getItem('theme') === 'dark') {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
-        modeToggle.textContent = "☀️";
+        modeIcon.classList.remove('fa-moon');
+        modeIcon.classList.add('fa-sun');
     }
 
     modeToggle.onclick = () => {
         body.classList.toggle("dark-mode");
         const isDark = body.classList.contains("dark-mode");
-        modeToggle.textContent = isDark ? "☀️" : "🌙";
+
+        // Toggle Icon
+        if (isDark) {
+            modeIcon.classList.remove('fa-moon');
+            modeIcon.classList.add('fa-sun');
+        } else {
+            modeIcon.classList.remove('fa-sun');
+            modeIcon.classList.add('fa-moon');
+        }
+
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     };
 
     // 2. View Switching Logic (SPA Feel)
     window.switchView = function(viewName) {
-        // Prevent default jump behavior if called from anchor tag
-        event?.preventDefault();
+        // Stop default anchor behavior if called from link
+        if(event) event.preventDefault();
 
-        // Get all views and nav items
-        const views = document.querySelectorAll('.view-section');
-        const navItems = document.querySelectorAll('.nav-item');
-
-        // Hide all views
-        views.forEach(view => {
-            view.classList.remove('active');
-            // Small timeout to allow CSS transition if needed,
-            // but for display:none switching, we usually just toggle class
-            setTimeout(() => {
-                if(!view.classList.contains('active')) {
-                    view.classList.add('hidden');
-                }
-            }, 100);
-        });
-
-        // Deactivate all nav links
-        navItems.forEach(item => {
+        // 1. Handle Nav Active State
+        document.querySelectorAll('.nav-item').forEach(item => {
             item.classList.remove('active');
         });
+        const activeNav = document.getElementById(`nav-${viewName}`);
+        if(activeNav) activeNav.classList.add('active');
 
-        // Show specific view
+        // 2. Handle View Visibility
+        const views = document.querySelectorAll('.view-section');
+        views.forEach(view => {
+            // Hide current
+            view.classList.remove('active');
+            view.classList.add('hidden');
+        });
+
+        // Show Target
         const targetView = document.getElementById(`${viewName}-view`);
-        const targetNav = document.getElementById(`nav-${viewName}`);
-
         if (targetView) {
-            // Remove hidden first to allow display:block
             targetView.classList.remove('hidden');
+            // Small timeout ensures CSS animation triggers cleanly
+            setTimeout(() => {
+                targetView.classList.add('active');
+            }, 10);
 
-            // Force reflow to enable animation
-            void targetView.offsetWidth;
-
-            // Add active class to trigger CSS animation
-            targetView.classList.add('active');
-
-            // Scroll to top smoothly
+            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        if (targetNav) {
-            targetNav.classList.add('active');
         }
     };
 });
