@@ -19,15 +19,34 @@
         <span class="brand" onclick="switchView('home')">
             <i class="fa-solid fa-layer-group"></i> Debanshu.
         </span>
+
         <div class="nav-links">
             <a href="#" onclick="switchView('home')" class="nav-item active" id="nav-home">Home</a>
             <a href="#" onclick="switchView('projects')" class="nav-item" id="nav-projects">Projects</a>
             <a href="#" onclick="switchView('research')" class="nav-item" id="nav-research">Research</a>
             <a href="#" onclick="switchView('publications')" class="nav-item" id="nav-publications">Publications</a>
         </div>
-        <button class="toggle-btn" id="modeToggle" aria-label="Toggle Dark Mode">
-            <i class="fa-solid fa-moon"></i>
-        </button>
+
+        <div class="nav-controls">
+            <button class="toggle-btn" id="modeToggle" aria-label="Toggle Dark Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-links">
+            <a href="#" onclick="mobileSwitch('home')" class="mobile-item">Home</a>
+            <a href="#" onclick="mobileSwitch('projects')" class="mobile-item">Projects</a>
+            <a href="#" onclick="mobileSwitch('research')" class="mobile-item">Research</a>
+            <a href="#" onclick="mobileSwitch('publications')" class="mobile-item">Publications</a>
+        </div>
     </div>
 </nav>
 
