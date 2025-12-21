@@ -29,36 +29,59 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     };
 
-    // 2. View Switching Logic (SPA Feel)
+    // 2. Mobile Menu Logic (NEW)
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    // Toggle Menu
+    hamburger.onclick = () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+
+        // Prevent scrolling when menu is open
+        if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    };
+
+    // Function to handle mobile link clicks
+    window.mobileSwitch = function(viewName) {
+        // Close menu
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+
+        // Switch View
+        window.switchView(viewName);
+    };
+
+
+    // 3. View Switching Logic (Existing)
     window.switchView = function(viewName) {
-        // Stop default anchor behavior if called from link
         if(event) event.preventDefault();
 
-        // 1. Handle Nav Active State
+        // Handle Nav Active State (Desktop)
         document.querySelectorAll('.nav-item').forEach(item => {
             item.classList.remove('active');
         });
         const activeNav = document.getElementById(`nav-${viewName}`);
         if(activeNav) activeNav.classList.add('active');
 
-        // 2. Handle View Visibility
+        // Handle View Visibility
         const views = document.querySelectorAll('.view-section');
         views.forEach(view => {
-            // Hide current
             view.classList.remove('active');
             view.classList.add('hidden');
         });
 
-        // Show Target
         const targetView = document.getElementById(`${viewName}-view`);
         if (targetView) {
             targetView.classList.remove('hidden');
-            // Small timeout ensures CSS animation triggers cleanly
             setTimeout(() => {
                 targetView.classList.add('active');
             }, 10);
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
