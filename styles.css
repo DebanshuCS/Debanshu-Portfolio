@@ -530,21 +530,38 @@ footer p { color: var(--text-secondary); font-size: 0.85rem; }
 
 /* 2. Hamburger Icon Styling */
 .hamburger {
-    display: none; /* Hidden on desktop */
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
     width: 30px;
-    height: 24px;
-    position: relative;
-    z-index: 1002; /* Above the overlay */
+    height: 21px; /* Fixed height */
+    z-index: 1002;
+    margin-left: 15px; /* Spacing from moon icon */
 }
 
 .hamburger .bar {
     width: 100%;
     height: 3px;
-    background-color: var(--text-primary);
+    background-color: #333; /* Fallback Color (Dark Grey) */
+    background-color: var(--text-primary); /* Theme Color */
     border-radius: 3px;
     transition: all 0.3s ease-in-out;
-    position: absolute;
+    transform-origin: left;
+}
+
+body.dark-mode .hamburger .bar {
+    background-color: #fff;
+}
+
+/* SHOW ON MOBILE (The Trigger) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex !important; /* Forces it to show */
+    }
+    .nav-links {
+        display: none !important; /* Forces desktop links to hide */
+    }
 }
 
 .hamburger .bar:nth-child(1) { top: 0; }
